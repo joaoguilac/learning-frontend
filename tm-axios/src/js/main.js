@@ -80,7 +80,9 @@ const transform = () => {
 }
 
 const errorHandling = () => {
-    console.log('errorHandling');
+    axios.get('https://jsonplaceholder.typicode.com/postsz')
+        .then((response) => renderOutput(response))
+        .catch((error) => renderOutput(error.response));
 }
 
 const cancel = () => {
