@@ -3,6 +3,18 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+// Define as configurações padrões quando cria a instância
+const newAxios = axios.create({
+    baseURL: 'https://api.example.com',
+    headers: {
+        common: {
+            Authorization: 'new axios'
+        }
+    }
+});
+// Altera as configurações padrões após a instância ser criada
+newAxios.defaults.headers.common['Authorization'] = 'new axios 2';
+
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
@@ -34,7 +46,7 @@ const get = () => {
             _limit: 5
         }
     };
-    axios.get('posts', config)
+    newAxios.get('posts', config)
         .then((response) => renderOutput(response))
 }
 
