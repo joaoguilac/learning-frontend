@@ -3,6 +3,28 @@ const dataEl = document.getElementById('data');
 const headersEl = document.getElementById('headers');
 const configEl = document.getElementById('config');
 
+axios.interceptors.request.use(function(config) {
+    config.headers.common.Authorization = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+    return config;
+}, function (error) {
+    console.log('error');
+    // Faz alguma coisa com o erro da requisição
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(function (response) {
+    console.log('sucesso');
+    // Qualquer código de status que dentro do limite de 2xx faz com que está função seja acionada
+    // Faz alguma coisa com os dados de resposta
+    return response;
+}, function (error) {
+    console.log(error.response);
+    console.log('error');
+    // Qualquer código de status que não esteja no limite do código 2xx faz com que está função seja acionada
+    // Faz alguma coisa com o erro da resposta
+    return Promise.reject(error);
+});
+
 const get = () => {
     const config = {
         params: {
