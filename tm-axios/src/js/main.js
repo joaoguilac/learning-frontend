@@ -60,7 +60,20 @@ const transform = () => {
     const config = {
         params: {
             _limit: 5
-        }
+        },
+        transformResponse: [function (data) {
+            // Faça o que quiser para transformar os dados
+            const payload = JSON.parse(data).map(o => {
+                return {
+                    ...o,
+                    first_name: 'Jon',
+                    last_name: 'Snow',
+                    full_name: 'Jon Snow',
+                    is_selected: false,
+                }
+            });
+            return payload;
+        }],
     };
     axios.get('https://jsonplaceholder.typicode.com/posts', config)
         .then((response) => renderOutput(response))
