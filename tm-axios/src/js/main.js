@@ -24,23 +24,46 @@ const post = () => {
 }
 
 const put = () => {
-    console.log('put');
+    const data = {
+        title: 'LaraVue',
+        body: 'bar',
+        userId: 1,
+    };
+    axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+        .then((response) => renderOutput(response))
 }
 
 const patch = () => {
-    console.log('patch');
+    const data = {
+        title: 'LaraVue',
+    };
+    axios.put('https://jsonplaceholder.typicode.com/posts/1', data)
+        .then((response) => renderOutput(response))
 }
 
 const del = () => {
-    console.log('delete');
+    axios.delete('https://jsonplaceholder.typicode.com/posts/2', data)
+        .then((response) => renderOutput(response))
 }
 
 const multiple = () => {
-    console.log('multiple');
+    Promise.all([
+        axios.get('https://jsonplaceholder.typicode.com/posts?_limit=5'),
+        axios.get('https://jsonplaceholder.typicode.com/users?_limit=5')
+    ]).then((response) => {
+        console.table(response[0].data);
+        console.table(response[1].data);
+    });
 }
 
 const transform = () => {
-    console.log('transform');
+    const config = {
+        params: {
+            _limit: 5
+        }
+    };
+    axios.get('https://jsonplaceholder.typicode.com/posts', config)
+        .then((response) => renderOutput(response))
 }
 
 const errorHandling = () => {
