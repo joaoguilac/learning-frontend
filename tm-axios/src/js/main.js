@@ -46,7 +46,7 @@ const get = () => {
             _limit: 5
         }
     };
-    newAxios.get('posts', config)
+    axios.get('posts', config)
         .then((response) => renderOutput(response))
 }
 
