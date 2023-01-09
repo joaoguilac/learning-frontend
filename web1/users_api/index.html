@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <title>Seleção de Usuários</title>
+</head>
+<body>
+    <main>
+        <script>
+            getUsers()
+        </script>
+        
+        <select name="names" id="names" onchange="request()">
+        </select>
+        
+        <div class="radio-buttons">
+            <div>
+                <input type="radio" name="users" id="us-posts" onclick="request()">
+                <label for="us-posts">User Posts</label>
+            </div>
+        
+            <div>
+                <input type="radio" name="users" id="us-todos" onclick="request()">
+                <label for="us-todos">User TODOs</label>
+                <div id="todos-filter" style="display: none;" onchange="request()">
+                    <div>
+                        <input type="radio" name="tasks" id="us-todos-all" checked="true">
+                        <label for="us-todos-all">Todas as tarefas</label>
+                    </div>
+                
+                    <div>
+                        <input type="radio" name="tasks" id="us-todos-finished">
+                        <label for="us-todos-finished">Tarefas Finalizadas</label>
+                    </div>
+                
+                    <div>
+                        <input type="radio" name="tasks" id="us-todos-not_finished">
+                        <label for="us-todos-not_finished">Tarefas Não Finalizadas</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h1 id="view-title"></h1>
+        <ul id="view-list"></ul>
+    </main>
+</body>
+</html>
